@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.daekyo.quiz.abap.dao.AbapMainDAO"> 
+
+	<select id="getQuizCount" resultType="Integer"> 
+		SELECT MAX(TO_NUMBER(IND))
+		FROM TEMP_QUIZ
+	</select>
+
+	<resultMap type="abapQuizVO" id="abapQuizVO">
+		<id column="ind" 				property="ind"/>	
+		<id column="subject" 			property="subject"/> 		
+		<id column="main_question" 		property="main_question"/> 	
+		<id column="sub_question" 		property="sub_question"/>
+		<id column="answer1" 			property="answer1"/>
+		<id column="answer2" 			property="answer2"/>
+		<id column="answer3" 			property="answer3"/>
+		<id column="answer4"			property="answer4"/>
+		<id column="answer5" 			property="answer5"/>
+		<id column="answer6" 			property="answer6"/>
+		<id column="collect1" 			property="collect1"/>
+		<id column="collect2" 			property="collect2"/>
+		<id column="collect3"			property="collect3"/>
+		<id column="collect4" 			property="collect4"/>
+		<id column="collect5" 			property="collect5"/>
+		<id column="collect6" 			property="collect6"/>
+	</resultMap>
+	
+	<select id="getQuizList" parameterType="HashMap" resultMap="abapQuizVO" > 
+		SELECT IND
+			, SUBJECT
+			, MAIN_QUESTION
+			, SUB_QUESTION
+			, ANSWER1
+			, ANSWER2
+			, ANSWER3
+			, ANSWER4
+			, ANSWER5
+			, ANSWER6
+			, COLLECT1
+			, COLLECT2
+			, COLLECT3
+			, COLLECT4
+			, COLLECT5
+			, COLLECT6 
+		FROM QUIZ
+		WHERE IND = #{ind}
+	</select>
+	
+</mapper>
